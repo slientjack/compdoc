@@ -1,5 +1,5 @@
 //
-//  Typedef.h
+//  Header.h
 //  compdoc
 //
 //************************************************************************************
@@ -26,45 +26,47 @@
 //
 //************************************************************************************
 
-#ifndef Typedef_h
-#define Typedef_h
+#ifndef Header_h
+#define Header_h
 
-#define kCompDocHeaderSize 512      // Header大小，512字节
-#define kCompDocDirEntrySize 128    // Directory Entry大小，128字节
-#define kUnixTimeSince1601 -11644502400 // 1601-01-01 00:00:00的Unix时间戳
-
-#define kFreeSecID -1               // 空闲的SecID
-#define kEndOfChainSecID -2         // SecID链的结束ID
-#define kSATSecID -3                // SAT自身使用的SecID
-#define kMSATSecID -4               // MSAT自身使用的SecID
+#include <iostream>
+#include "Typedef.h"
 
 namespace slient {
 namespace compdoc {
 
-typedef int             SEC_ID;
-typedef unsigned int    SEC_SIZE;
-typedef unsigned int    SEC_POS;
-typedef int             DIR_ID;
-
-/// 返回结果
-typedef enum {
-    Success = 0,        // 成功
-    FileOpenFail,       // 文件打开失败
-    FileInvalid,        // 文件无效
-    ParametersInvalid,  // 参数无效
-} Result;
-
-/// Entry类型
-typedef enum {
-    EmptyEntry =    0x00,   // 空
-    UserStorage =   0x01,   // 用户Storage
-    UserStream =    0x02,   // 用户Stream
-    LockBytes =     0x03,   // 未知
-    Property =      0x04,   // 未知
-    RootStorage =   0x05,   // 根Storage
-} EntryType;
+class Header
+{
+public:
+    /// 唯一标识
+    std::string uid;
+    /// 修订版本号
+    short revision;
+    /// 版本号
+    short version;
+    /// 字节序，0xFEFF：小端，0xFFFE：大端
+    short byteOrder;
+    /// sector的大小（字节）
+    SEC_SIZE secSize;
+    /// short-sector的大小（字节）
+    SEC_SIZE shortSecSize;
+    /// SAT使用的sector数量
+    SEC_SIZE satSecNum;
+    /// Directory Stream的第一个SecID
+    SEC_ID dirSecID;
+    /// 标准Stream的最小大小（字节）
+    SEC_SIZE minStreamSize;
+    /// SSAT的第一个SecID（-2表示不存在SSAT）
+    SEC_ID ssatSecID;
+    /// SSAT使用的sector数量
+    SEC_SIZE ssatSecNum;
+    /// MSAT的第一个SecID（-2表示不需要sector存放）
+    SEC_ID msatSecID;
+    /// MSAT使用的sector数量
+    SEC_SIZE msatSecNum;
+};
 
 } // namespace compdoc
 } // namespace slient
 
-#endif /* Typedef_h */
+#endif /* Header_h */

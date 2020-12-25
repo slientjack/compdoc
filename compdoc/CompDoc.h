@@ -33,6 +33,8 @@
 #include <fstream>
 #include <vector>
 #include "Typedef.h"
+#include "Header.h"
+#include "DirectoryEntry.h"
 
 namespace slient {
 namespace compdoc {
@@ -47,12 +49,31 @@ public:
     
     /// 析构函数
     ~CompDoc();
+    
+    /// 文档是否已打开
+    bool isOpen();
+    
+    /// 获取文件头
+    /// @param header 文件头信息 [output]
+    Result getHeader(Header* header);
+    
+    /// 获取Directory
+    /// @param directory Directory [output]
+    Result getDirectory(std::vector<DirectoryEntry>* directory);
 
 private:
+    /// 状态
+    Result _status;
     /// 文件流
     std::fstream _fileStream;
+    /// 文档唯一标识
+    std::string _uid;
+    /// 修订版本号
+    short _revision;
+    /// 版本号
+    short _version;
     /// 字节序标记，0xFEFF：小端，0xFFFE：大端
-    short _byteOrderFlag;
+    short _byteOrder;
     /// sector的大小（字节）
     SEC_SIZE _secSize;
     /// short-sector的大小（字节）
@@ -75,13 +96,21 @@ private:
     std::vector<SEC_ID> _msat;
     /// SAT
     std::vector<SEC_ID> _sat;
+    /// SSAT
+    std::vector<SEC_ID> _ssat;
+    /// Directory
+    std::vector<DirectoryEntry> _directory;
+    /// Short-Stream Container Stream
+    char *_sscStream;
+    /// Short-Stream Container Stream的长度
+    SEC_SIZE _sscStreamSize;
     
     /// 读取字节
     /// @param buffer 缓存区
     /// @param data 数据
     /// @param pos 起始字节位置
     /// @param length 字节长度
-    void getBytes(void *buffer, char *data, int pos, int length);
+    inline void getBytes(void *buffer, char *data, int pos, int length);
     
     /// 读取sector的字节
     /// @param buffer 缓存区
@@ -92,6 +121,18 @@ private:
     /// @param buffer 缓存区
     /// @param secID SecID
     void getShortSectorBytes(char *buffer, SEC_ID secID);
+    
+    /// 读取标准Stream的数据
+    /// @param data 数据
+    /// @param secID SecID
+    /// @param size 数据长度
+    void getStandardStreamData(char *data, SEC_ID secID, SEC_SIZE size);
+    
+    /// 读取Short-Stream的数据
+    /// @param data 数据
+    /// @param secID SecID
+    /// @param size 数据长度
+    void getShortStreamData(char *data, SEC_ID secID, SEC_SIZE size);
 };
 
 } // namespace compdoc

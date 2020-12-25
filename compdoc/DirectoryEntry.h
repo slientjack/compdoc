@@ -1,5 +1,5 @@
 //
-//  Typedef.h
+//  DirectoryEntry.h
 //  compdoc
 //
 //************************************************************************************
@@ -26,45 +26,51 @@
 //
 //************************************************************************************
 
-#ifndef Typedef_h
-#define Typedef_h
+#ifndef DirectoryEntry_h
+#define DirectoryEntry_h
 
-#define kCompDocHeaderSize 512      // Header大小，512字节
-#define kCompDocDirEntrySize 128    // Directory Entry大小，128字节
-#define kUnixTimeSince1601 -11644502400 // 1601-01-01 00:00:00的Unix时间戳
-
-#define kFreeSecID -1               // 空闲的SecID
-#define kEndOfChainSecID -2         // SecID链的结束ID
-#define kSATSecID -3                // SAT自身使用的SecID
-#define kMSATSecID -4               // MSAT自身使用的SecID
+#include <iostream>
+#include "Typedef.h"
 
 namespace slient {
 namespace compdoc {
 
-typedef int             SEC_ID;
-typedef unsigned int    SEC_SIZE;
-typedef unsigned int    SEC_POS;
-typedef int             DIR_ID;
-
-/// 返回结果
-typedef enum {
-    Success = 0,        // 成功
-    FileOpenFail,       // 文件打开失败
-    FileInvalid,        // 文件无效
-    ParametersInvalid,  // 参数无效
-} Result;
-
-/// Entry类型
-typedef enum {
-    EmptyEntry =    0x00,   // 空
-    UserStorage =   0x01,   // 用户Storage
-    UserStream =    0x02,   // 用户Stream
-    LockBytes =     0x03,   // 未知
-    Property =      0x04,   // 未知
-    RootStorage =   0x05,   // 根Storage
-} EntryType;
+class DirectoryEntry
+{
+public:
+    /// 名称
+    std::string name;
+    /// ID
+    DIR_ID dirID;
+    /// 类型
+    EntryType type;
+    /// 红/黑
+    bool isBlack;
+    /// 左子节点的DirID（-1表示没有）
+    DIR_ID lChildDirID;
+    /// 右子节点的DirID（-1表示没有）
+    DIR_ID rChildDirID;
+    /// 根节点的DirID（storage才有，否则-1）
+    DIR_ID rootDirID;
+    /// 节点创建时间
+    double createTime;
+    /// 节点修改时间
+    double modifyTime;
+    /// stream：第一个sector/short-sector的ID，root storage：short-stream container stream的第一个secID
+    SEC_ID secID;
+    /// stream: stream所占的总字节，root storage：short-stream container stream所占的总字节
+    SEC_SIZE size;
+    
+    /// 默认构造函数
+    DirectoryEntry() {};
+    
+    /// 构造函数
+    /// @param data 数据
+    /// @param byteOrder 字节序
+    DirectoryEntry(char *data, short byteOrder);
+};
 
 } // namespace compdoc
 } // namespace slient
 
-#endif /* Typedef_h */
+#endif /* DirectoryEntry_h */

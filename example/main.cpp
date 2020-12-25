@@ -12,6 +12,25 @@ using namespace std;
 using namespace slient::compdoc;
 
 int main(int argc, const char * argv[]) {
+    // 打开文件
     CompDoc doc("/Users/jack/code/cpp/demo.doc");
+    if (!doc.isOpen()) {
+        printf("打开文档失败\n");
+    }
+    
+    // 读取文档头信息
+    Header header;
+    Result res = doc.getHeader(&header);
+    if (res == Success) {
+        printf("文档sector大小：%dbyte\n", header.secSize);
+    }
+    
+    // 读取Directory
+    vector<DirectoryEntry> directory;
+    res = doc.getDirectory(&directory);
+    if (res == Success) {
+        printf("Directory大小：%lu\n", directory.size());
+    }
+    
     return 0;
 }

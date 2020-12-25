@@ -27,6 +27,7 @@
 //************************************************************************************
 
 #include "CompDoc.h"
+#include "Util.h"
 
 using namespace std;
 using namespace slient::compdoc;
@@ -38,6 +39,7 @@ CompDoc::CompDoc(const string& filePath, bool create)
     _fileStream.open(filePath, ios::in | ios::binary);
     if (!_fileStream.is_open()) {
         printf("Read Compound Document File Fail\n");
+        _status = FileOpenFail;
         return;
     }
     
@@ -55,11 +57,21 @@ CompDoc::CompDoc(const string& filePath, bool create)
           header[6] == (char)0x1A &&
           header[7] == (char)0xE1)) {
         printf("Not a Compound Document File\n");
+        _status = FileInvalid;
         return;
     }
     
+    // UID
+    memcpy(&_uid, header + 8, 16);
+    
     // 字节序(0xFEFF：小端，0xFFFE：大端)
-    memcpy(&_byteOrderFlag, header + 28, 2);
+    memcpy(&_byteOrder, header + 28, 2);
+    
+    // Revision
+    getBytes(&_revision, header, 24, 2);
+    
+    // Version
+    getBytes(&_version, header, 26, 2);
     
     // sector的大小（字节）
     unsigned short ssz;
@@ -125,7 +137,7 @@ CompDoc::CompDoc(const string& filePath, bool create)
     delete [] header;
     
     // ------------------------------------
-    // 2.构建SAT
+    // 3.构建SAT
     // ------------------------------------
     
     for (int i = 0; i < _msat.size(); ++i) {
@@ -139,28 +151,116 @@ CompDoc::CompDoc(const string& filePath, bool create)
         }
     }
     
-    printf("end\n");
+    // ------------------------------------
+    // 4.构建SSAT
+    // ------------------------------------
+    
+    SEC_ID nextSsatSecID = _ssatSecID;
+    while (nextSsatSecID != kEndOfChainSecID) {
+        char ssatData[_secSize];
+        getSectorBytes(ssatData, nextSsatSecID);
+        for (int j = 0; j < _secSize; j += 4) {
+            SEC_ID ssatSecID;
+            getBytes(&ssatSecID, ssatData, j, 4);
+            _ssat.push_back(ssatSecID);
+        }
+        nextSsatSecID = _sat[nextSsatSecID];
+    }
+    
+    // ------------------------------------
+    // 5.构建Directory
+    // ------------------------------------
+    
+    SEC_ID nextDirSecID = _dirSecID;
+    while (nextDirSecID != kEndOfChainSecID) {
+        char dirData[_secSize];
+        getSectorBytes(dirData, nextDirSecID);
+        for (int j = 0; j < _secSize; j += kCompDocDirEntrySize) {
+            char *entryData = dirData + j;
+            // 转换成Entry对象
+            DirectoryEntry entry(entryData, _byteOrder);
+            entry.dirID = (DIR_ID)_directory.size();
+            _directory.push_back(entry);
+        }
+        nextDirSecID = _sat[nextDirSecID];
+    }
+    
+    // ------------------------------------
+    // 6.提取Short-Stream Container Stream
+    // ------------------------------------
+    
+    if (_directory.size() > 0) {
+        DirectoryEntry& rootEntry = _directory[0];
+        if (rootEntry.type == RootStorage) {
+            _sscStreamSize = rootEntry.size;
+            if (_sscStreamSize > 0) {
+                _sscStream = new char[_sscStreamSize];
+                getStandardStreamData(_sscStream, rootEntry.secID, _sscStreamSize);
+            }
+        }
+    }
+    
+    printf("File opened!\n");
+    _status = Success;
 }
 
 CompDoc::~CompDoc()
 {
     printf("CompDoc 析构函数\n");
     _fileStream.close();
+    if (_sscStream) {
+        delete [] _sscStream;
+        _sscStream = NULL;
+    }
 }
+
+bool CompDoc::isOpen()
+{
+    return _status == Success;
+}
+
+Result CompDoc::getHeader(Header* header)
+{
+    if (!isOpen()) {
+        return _status;
+    }
+    if (!header) {
+        return ParametersInvalid;
+    }
+    
+    header->uid = _uid;
+    header->revision = _revision;
+    header->version = _version;
+    header->byteOrder = _byteOrder;
+    header->secSize = _secSize;
+    header->shortSecSize = _shortSecSize;
+    header->satSecNum = _satSecNum;
+    header->dirSecID = _dirSecID;
+    header->minStreamSize = _minStreamSize;
+    header->ssatSecID = _ssatSecID;
+    header->ssatSecNum = _ssatSecNum;
+    header->msatSecID = _msatSecID;
+    header->msatSecNum = _msatSecNum;
+    return Success;
+}
+
+Result CompDoc::getDirectory(vector<DirectoryEntry>* directory)
+{
+    if (!isOpen()) {
+        return _status;
+    }
+    if (!directory) {
+        return ParametersInvalid;
+    }
+    *directory = _directory;
+    return Success;
+}
+
+#pragma mark - Private
 
 void CompDoc::getBytes(void *buffer, char *data, int pos, int length)
 {
-    if (_byteOrderFlag == -2) {
-        // 字节序一致
-        memcpy(buffer, data + pos, length);
-    } else {
-        // 字节序不一致
-        char *p = (char *)buffer;
-        for (int i = pos + length - 1; i >= pos; --i) {
-            *p = data[i];
-            ++p;
-        }
-    }
+    Util::getBytes(buffer, data, pos, length, _byteOrder);
 }
 
 void CompDoc::getSectorBytes(char *buffer, SEC_ID secID)
@@ -172,5 +272,38 @@ void CompDoc::getSectorBytes(char *buffer, SEC_ID secID)
 
 void CompDoc::getShortSectorBytes(char *buffer, SEC_ID secID)
 {
-    // TODO:
+    SEC_POS secPos = secID * _shortSecSize;
+    memcpy(buffer, _sscStream + secPos, _shortSecSize);
+}
+
+/// 读取标准Stream的数据
+/// @param data 数据
+/// @param secID SecID
+/// @param size 数据长度
+void CompDoc::getStandardStreamData(char *data, SEC_ID secID, SEC_SIZE size)
+{
+    SEC_POS pos = 0;
+    while (secID != kEndOfChainSecID) {
+        char secData[_secSize];
+        getSectorBytes(secData, secID);
+        SEC_SIZE len = pos + _secSize > size ? size - pos : _secSize;
+        memcpy(data + pos, secData, len);
+        secID = _sat[secID];
+    }
+}
+
+/// 读取Short-Stream的数据
+/// @param data 数据
+/// @param secID SecID
+/// @param size 数据长度
+void CompDoc::getShortStreamData(char *data, SEC_ID secID, SEC_SIZE size)
+{
+    SEC_POS pos = 0;
+    while (secID != kEndOfChainSecID) {
+        char secData[_shortSecSize];
+        getShortSectorBytes(secData, secID);
+        SEC_SIZE len = pos + _shortSecSize > size ? size - pos : _shortSecSize;
+        memcpy(data + pos, secData, len);
+        secID = _ssat[secID];
+    }
 }
