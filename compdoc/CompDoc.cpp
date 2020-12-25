@@ -256,6 +256,28 @@ Result CompDoc::getDirectory(vector<DirectoryEntry>* directory)
     return Success;
 }
 
+Result CompDoc::getEntry(const std::string& path, DirectoryEntry* entry)
+{
+    if (!isOpen()) {
+        return _status;
+    }
+    if (!entry) {
+        return ParametersInvalid;
+    }
+    
+    // TODO:
+    DirectoryEntry& rootEntry = _directory[0];
+    Storage *rootStorage = (Storage *)entry;
+    rootStorage->dirID = rootEntry.dirID;
+    rootStorage->parentID = 0;
+    rootStorage->name = rootEntry.name;
+    rootStorage->createTime = rootEntry.createTime;
+    rootStorage->modifyTime = rootEntry.modifyTime;
+    getStorageMembers(rootEntry.dirID, rootStorage);
+    
+    return Success;
+}
+
 #pragma mark - Private
 
 void CompDoc::getBytes(void *buffer, char *data, int pos, int length)
@@ -306,4 +328,9 @@ void CompDoc::getShortStreamData(char *data, SEC_ID secID, SEC_SIZE size)
         memcpy(data + pos, secData, len);
         secID = _ssat[secID];
     }
+}
+
+void CompDoc::getStorageMembers(DIR_ID dirID, Storage *storage)
+{
+    
 }

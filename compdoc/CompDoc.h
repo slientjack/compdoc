@@ -35,6 +35,8 @@
 #include "Typedef.h"
 #include "Header.h"
 #include "DirectoryEntry.h"
+#include "Storage.h"
+#include "Stream.h"
 
 namespace slient {
 namespace compdoc {
@@ -60,6 +62,11 @@ public:
     /// 获取Directory
     /// @param directory Directory [output]
     Result getDirectory(std::vector<DirectoryEntry>* directory);
+    
+    /// 获取Entry
+    /// @param path Storage路径，其中传"/"表示Root Storage
+    /// @param entry DirectoryEntry子类对象指针，即Storage或Stream [output]
+    Result getEntry(const std::string& path, DirectoryEntry* entry);
 
 private:
     /// 状态
@@ -115,12 +122,12 @@ private:
     /// 读取sector的字节
     /// @param buffer 缓存区
     /// @param secID SecID
-    void getSectorBytes(char *buffer, SEC_ID secID);
+    inline void getSectorBytes(char *buffer, SEC_ID secID);
     
     /// 读取short-sector的字节
     /// @param buffer 缓存区
     /// @param secID SecID
-    void getShortSectorBytes(char *buffer, SEC_ID secID);
+    inline void getShortSectorBytes(char *buffer, SEC_ID secID);
     
     /// 读取标准Stream的数据
     /// @param data 数据
@@ -133,6 +140,8 @@ private:
     /// @param secID SecID
     /// @param size 数据长度
     void getShortStreamData(char *data, SEC_ID secID, SEC_SIZE size);
+    
+    void getStorageMembers(DIR_ID dirID, Storage *storage);
 };
 
 } // namespace compdoc

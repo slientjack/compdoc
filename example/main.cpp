@@ -32,5 +32,8 @@ int main(int argc, const char * argv[]) {
         printf("Directory大小：%lu\n", directory.size());
     }
     
+    Storage storage;
+    doc.getEntry("/", &storage);
+    
     return 0;
 }
