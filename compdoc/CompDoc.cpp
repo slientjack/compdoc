@@ -26,6 +26,7 @@
 //
 //************************************************************************************
 
+#include <typeinfo>
 #include "CompDoc.h"
 #include "Util.h"
 
@@ -195,7 +196,7 @@ CompDoc::CompDoc(const string& filePath, bool create)
             _sscStreamSize = rootEntry.size;
             if (_sscStreamSize > 0) {
                 _sscStream = new char[_sscStreamSize];
-                getStandardStreamData(_sscStream, rootEntry.secID, _sscStreamSize);
+                getStandardStreamData(_sscStream, rootEntry.secID, 0, _sscStreamSize);
             }
         }
     }
@@ -264,73 +265,171 @@ Result CompDoc::getEntry(const std::string& path, DirectoryEntry* entry)
     if (!entry) {
         return ParametersInvalid;
     }
+    if (_directory.size() == 0) {
+        return EntryNotExists;
+    }
     
-    // TODO:
-    DirectoryEntry& rootEntry = _directory[0];
-    Storage *rootStorage = (Storage *)entry;
-    rootStorage->dirID = rootEntry.dirID;
-    rootStorage->parentID = 0;
-    rootStorage->name = rootEntry.name;
-    rootStorage->createTime = rootEntry.createTime;
-    rootStorage->modifyTime = rootEntry.modifyTime;
-    getStorageMembers(rootEntry.dirID, rootStorage);
+    // 红黑树查找匹配的Entry
+    DirectoryEntry& dirEntry = _directory[0];
+    DIR_ID parentID = kNoneDirID;
+    vector<string> paths = Util::split(path, "/");
+    for (int i = 0; i < paths.size(); ++i) {
+        string name = paths[i];
+        DIR_ID dirID = findEntry(dirEntry.rootDirID, name);
+        if (dirID == kNoneDirID) {
+            return EntryNotExists;
+        }
+        parentID = dirEntry.dirID;
+        dirEntry = _directory[dirID];
+    }
     
+    if (entry->isStorage() && dirEntry.isStorage()) {
+        // Storage
+        Storage* storage = (Storage*)entry;
+        storage->set(dirEntry);
+        storage->parentID = parentID;
+        getStorageMembers(dirEntry.rootDirID, storage);
+        return Success;
+    } else if (entry->isStream() && dirEntry.isStream()) {
+        // Stream
+        Stream* stream = (Stream*)entry;
+        stream->set(dirEntry);
+        stream->parentID = parentID;
+        return Success;
+    }
+    return EntryNotExists;
+}
+
+Result CompDoc::read(Stream* stream, char* bytes)
+{
+    return read(stream, bytes, 0, stream->size);
+}
+
+Result CompDoc::read(Stream* stream, char* bytes, SEC_POS pos, SEC_SIZE len)
+{
+    if (!isOpen()) {
+        return _status;
+    }
+    if (!stream || !bytes) {
+        return ParametersInvalid;
+    }
+    
+    getStreamData(bytes, stream->secID, pos, len, stream->size);
     return Success;
 }
 
 #pragma mark - Private
 
-void CompDoc::getBytes(void *buffer, char *data, int pos, int length)
+void CompDoc::getBytes(void* buffer, char* data, int pos, int length)
 {
     Util::getBytes(buffer, data, pos, length, _byteOrder);
 }
 
-void CompDoc::getSectorBytes(char *buffer, SEC_ID secID)
+void CompDoc::getSectorBytes(char* buffer, SEC_ID secID)
 {
     SEC_POS secPos = kCompDocHeaderSize + secID * _secSize;
     _fileStream.seekg(secPos);
     _fileStream.read(buffer, _secSize);
 }
 
-void CompDoc::getShortSectorBytes(char *buffer, SEC_ID secID)
+void CompDoc::getShortSectorBytes(char* buffer, SEC_ID secID)
 {
     SEC_POS secPos = secID * _shortSecSize;
     memcpy(buffer, _sscStream + secPos, _shortSecSize);
 }
 
-/// 读取标准Stream的数据
-/// @param data 数据
-/// @param secID SecID
-/// @param size 数据长度
-void CompDoc::getStandardStreamData(char *data, SEC_ID secID, SEC_SIZE size)
+void CompDoc::getStreamData(char* data, SEC_ID secID, SEC_POS pos, SEC_SIZE size, SEC_SIZE streamSize)
 {
-    SEC_POS pos = 0;
-    while (secID != kEndOfChainSecID) {
-        char secData[_secSize];
-        getSectorBytes(secData, secID);
-        SEC_SIZE len = pos + _secSize > size ? size - pos : _secSize;
-        memcpy(data + pos, secData, len);
+    if (streamSize < _minStreamSize) {
+        getShortStreamData(data, secID, pos, size);
+    } else {
+        getStandardStreamData(data, secID, pos, size);
+    }
+}
+
+void CompDoc::getStandardStreamData(char* data, SEC_ID secID, SEC_POS pos, SEC_SIZE size)
+{
+    SEC_POS offset = 0;
+    SEC_POS secPos = 0;
+    while (secID != kEndOfChainSecID && offset < size) {
+        if (pos < secPos + _secSize) {
+            char secData[_secSize];
+            getSectorBytes(secData, secID);
+            SEC_POS st = pos > secPos ? pos - secPos : 0;
+            SEC_SIZE len = min(size - offset, _secSize - st);
+            memcpy(data + offset, secData + st, len);
+            offset += len;
+        }
         secID = _sat[secID];
+        secPos += _secSize;
     }
 }
 
-/// 读取Short-Stream的数据
-/// @param data 数据
-/// @param secID SecID
-/// @param size 数据长度
-void CompDoc::getShortStreamData(char *data, SEC_ID secID, SEC_SIZE size)
+void CompDoc::getShortStreamData(char* data, SEC_ID secID, SEC_POS pos, SEC_SIZE size)
 {
-    SEC_POS pos = 0;
-    while (secID != kEndOfChainSecID) {
-        char secData[_shortSecSize];
-        getShortSectorBytes(secData, secID);
-        SEC_SIZE len = pos + _shortSecSize > size ? size - pos : _shortSecSize;
-        memcpy(data + pos, secData, len);
+    SEC_POS offset = 0;
+    SEC_POS secPos = 0;
+    while (secID != kEndOfChainSecID && offset < size) {
+        if (pos < secPos + _shortSecSize) {
+            char secData[_shortSecSize];
+            getShortSectorBytes(secData, secID);
+            SEC_POS st = pos > secPos ? pos - secPos : 0;
+            SEC_SIZE len = min(size - offset, _shortSecSize - st);
+            memcpy(data + offset, secData + st, len);
+            offset += len;
+        }
         secID = _ssat[secID];
+        secPos += _shortSecSize;
     }
 }
 
-void CompDoc::getStorageMembers(DIR_ID dirID, Storage *storage)
+DIR_ID CompDoc::findEntry(DIR_ID dirID, const std::string& name)
 {
+    if (dirID == kNoneDirID)
+        return kNoneDirID;
     
+    DirectoryEntry& entry = _directory[dirID];
+    int res = Util::compare(name, entry.name);
+    if (res == 0) {
+        // 相等
+        return dirID;
+    } else if (res < 0) {
+        // 小于，查找左子节点
+        return findEntry(entry.lChildDirID, name);
+    } else {
+        // 大于，查找右子节点
+        return findEntry(entry.rChildDirID, name);
+    }
+}
+
+void CompDoc::getStorageMembers(DIR_ID dirID, Storage* parent)
+{
+    if (dirID < 0 || dirID >= _directory.size())
+        return;
+    
+    // LVR遍历红黑树
+    DirectoryEntry& entry = _directory[dirID];
+    // 左节点
+    if (entry.lChildDirID != kFreeSecID) {
+        getStorageMembers(entry.lChildDirID, parent);
+    }
+    // 自身
+    if (entry.type == UserStorage) {
+        // 节点是Storage
+        Storage* storage = new Storage();
+        storage->set(entry);
+        storage->parentID = parent->dirID;
+        getStorageMembers(entry.rootDirID, storage);
+        parent->children.push_back(storage);
+    } else if (entry.type == UserStream) {
+        // 节点是Stream
+        Stream* stream = new Stream();
+        stream->set(entry);
+        stream->parentID = parent->dirID;
+        parent->children.push_back(stream);
+    }
+    // 右节点
+    if (entry.rChildDirID != kFreeSecID) {
+        getStorageMembers(entry.rChildDirID, parent);
+    }
 }

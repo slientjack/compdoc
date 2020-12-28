@@ -67,6 +67,18 @@ public:
     /// @param path Storage路径，其中传"/"表示Root Storage
     /// @param entry DirectoryEntry子类对象指针，即Storage或Stream [output]
     Result getEntry(const std::string& path, DirectoryEntry* entry);
+    
+    /// 读取Stream全部字节流
+    /// @param stream Stream对象
+    /// @param bytes 字节数组 [output]
+    Result read(Stream* stream, char* bytes);
+    
+    /// 读取Stream指定位置、长度字节流
+    /// @param stream Stream对象
+    /// @param bytes 字节数组 [output]
+    /// @param pos 起始位置
+    /// @param len 长度
+    Result read(Stream* stream, char* bytes, SEC_POS pos, SEC_SIZE len);
 
 private:
     /// 状态
@@ -117,31 +129,45 @@ private:
     /// @param data 数据
     /// @param pos 起始字节位置
     /// @param length 字节长度
-    inline void getBytes(void *buffer, char *data, int pos, int length);
+    inline void getBytes(void* buffer, char* data, int pos, int length);
     
     /// 读取sector的字节
     /// @param buffer 缓存区
     /// @param secID SecID
-    inline void getSectorBytes(char *buffer, SEC_ID secID);
+    inline void getSectorBytes(char* buffer, SEC_ID secID);
     
     /// 读取short-sector的字节
     /// @param buffer 缓存区
     /// @param secID SecID
-    inline void getShortSectorBytes(char *buffer, SEC_ID secID);
+    inline void getShortSectorBytes(char* buffer, SEC_ID secID);
+    
+    /// 读取Stream的数据
+    /// @param data 数据
+    /// @param secID SecID
+    /// @param size 数据长度
+    void getStreamData(char* data, SEC_ID secID, SEC_POS pos, SEC_SIZE size, SEC_SIZE streamSize);
     
     /// 读取标准Stream的数据
     /// @param data 数据
     /// @param secID SecID
     /// @param size 数据长度
-    void getStandardStreamData(char *data, SEC_ID secID, SEC_SIZE size);
+    void getStandardStreamData(char* data, SEC_ID secID, SEC_POS pos, SEC_SIZE size);
     
     /// 读取Short-Stream的数据
     /// @param data 数据
     /// @param secID SecID
     /// @param size 数据长度
-    void getShortStreamData(char *data, SEC_ID secID, SEC_SIZE size);
+    void getShortStreamData(char* data, SEC_ID secID, SEC_POS pos, SEC_SIZE size);
     
-    void getStorageMembers(DIR_ID dirID, Storage *storage);
+    /// 查找名字匹配的Entry
+    /// @param dirID DirID
+    /// @param name 名称
+    DIR_ID findEntry(DIR_ID dirID, const std::string& name);
+    
+    /// 递归获取Storage的成员
+    /// @param dirID 成员红黑树根节点的DirID
+    /// @param parent Storage
+    void getStorageMembers(DIR_ID dirID, Storage* parent);
 };
 
 } // namespace compdoc

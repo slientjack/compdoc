@@ -40,6 +40,9 @@ class Stream : public DirectoryEntry
 public:
     /// 父Entry的ID
     DIR_ID parentID;
+    
+    Stream();
+    ~Stream();
 };
 
 } // namespace compdoc

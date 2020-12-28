@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "../compdoc/CompDoc.h"
+#include "../compdoc/Util.h"
 
 using namespace std;
 using namespace slient::compdoc;
@@ -32,8 +33,17 @@ int main(int argc, const char * argv[]) {
         printf("Directory大小：%lu\n", directory.size());
     }
     
+    // 读取Storage
     Storage storage;
     doc.getEntry("/", &storage);
+    
+    // 读取Stream
+    Stream stream;
+    doc.getEntry("/WordDocument", &stream);
+    
+    // 读取Stream的字节流
+    char data[stream.size];
+    doc.read(&stream, data);
     
     return 0;
 }

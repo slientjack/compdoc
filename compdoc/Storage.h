@@ -45,6 +45,7 @@ public:
     std::vector<DirectoryEntry*> children;
     
     Storage();
+    ~Storage();
 };
 
 } // namespace compdoc

@@ -38,6 +38,8 @@
 #define kSATSecID -3                // SAT自身使用的SecID
 #define kMSATSecID -4               // MSAT自身使用的SecID
 
+#define kNoneDirID -1               // 不存在的DirID
+
 namespace slient {
 namespace compdoc {
 
@@ -52,6 +54,7 @@ typedef enum {
     FileOpenFail,       // 文件打开失败
     FileInvalid,        // 文件无效
     ParametersInvalid,  // 参数无效
+    EntryNotExists,     // Entry不存在
 } Result;
 
 /// Entry类型

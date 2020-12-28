@@ -32,7 +32,7 @@
 using namespace std;
 using namespace slient::compdoc;
 
-DirectoryEntry::DirectoryEntry(char *data, short byteOrder)
+DirectoryEntry::DirectoryEntry(char* data, short byteOrder)
 {
     // 名称
     unsigned short nameLen;
@@ -69,4 +69,29 @@ DirectoryEntry::DirectoryEntry(char *data, short byteOrder)
     Util::getBytes(&secID, data, 116, 4, byteOrder);
     // Size
     Util::getBytes(&size, data, 120, 4, byteOrder);
+}
+
+void DirectoryEntry::set(const DirectoryEntry& entry)
+{
+    name = entry.name;
+    dirID = entry.dirID;
+    type = entry.type;
+    isBlack = entry.isBlack;
+    lChildDirID = entry.lChildDirID;
+    rChildDirID = entry.rChildDirID;
+    rootDirID = entry.rootDirID;
+    createTime = entry.createTime;
+    modifyTime = entry.modifyTime;
+    secID = entry.secID;
+    size = entry.size;
+}
+
+bool DirectoryEntry::isStorage()
+{
+    return type == RootStorage || type == UserStorage;
+}
+
+bool DirectoryEntry::isStream()
+{
+    return type == UserStream;
 }

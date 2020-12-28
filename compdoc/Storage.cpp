@@ -27,11 +27,27 @@
 //************************************************************************************
 
 #include "Storage.h"
+#include "Stream.h"
 
 using namespace std;
 using namespace slient::compdoc;
 
 Storage::Storage()
 {
-    
+    type = UserStorage;
+}
+
+Storage::~Storage()
+{
+    for (int i = 0; i < children.size(); ++i) {
+        DirectoryEntry *entry = children[i];
+        if (entry->isStorage()) {
+            delete (Storage *)entry;
+        } else {
+            delete (Stream *)entry;
+        }
+        children[i] = NULL;
+    }
+    children.clear();
+    printf("Storage析构:%s\n", name.c_str());
 }

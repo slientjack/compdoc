@@ -27,3 +27,16 @@
 //************************************************************************************
 
 #include "Stream.h"
+
+using namespace std;
+using namespace slient::compdoc;
+
+Stream::Stream()
+{
+    type = UserStream;
+}
+
+Stream::~Stream()
+{
+    printf("Stream析构:%s\n", name.c_str());
+}

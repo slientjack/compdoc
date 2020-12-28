@@ -62,12 +62,22 @@ public:
     SEC_SIZE size;
     
     /// 默认构造函数
-    DirectoryEntry() {};
+    DirectoryEntry(): dirID(kNoneDirID), type(EmptyEntry) {};
     
     /// 构造函数
     /// @param data 数据
     /// @param byteOrder 字节序
-    DirectoryEntry(char *data, short byteOrder);
+    DirectoryEntry(char* data, short byteOrder);
+    
+    /// 赋值
+    /// @param entry DirectoryEntry
+    void set(const DirectoryEntry& entry);
+    
+    /// 是否Storage
+    bool isStorage();
+    
+    /// 是否Stream
+    bool isStream();
 };
 
 } // namespace compdoc

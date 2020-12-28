@@ -30,6 +30,7 @@
 #define Util_h
 
 #include <iostream>
+#include <vector>
 
 namespace slient {
 namespace compdoc {
@@ -43,6 +44,16 @@ public:
     /// @param pos 起始字节位置
     /// @param length 字节长度
     static void getBytes(void *buffer, char *data, int pos, int length, short byteOrder);
+    
+    /// 分割字符串
+    /// @param str 字符串
+    /// @param pattern 分隔符
+    static std::vector<std::string> split(std::string str, std::string pattern);
+    
+    /// 字符串比较大小
+    /// @param str1 字符串1
+    /// @param str2 字符串2
+    static int compare(std::string str1, std::string str2);
 };
 
 } // namespace compdoc
