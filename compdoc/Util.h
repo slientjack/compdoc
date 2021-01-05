@@ -43,6 +43,7 @@ public:
     /// @param data 数据
     /// @param pos 起始字节位置
     /// @param length 字节长度
+    /// @param byteOrder 文档字节序
     static void getBytes(void *buffer, char *data, int pos, int length, short byteOrder);
     
     /// 分割字符串
@@ -57,7 +58,14 @@ public:
     
     /// Unicode-16转UTF-8
     /// @param str16 unicode-16字符串
-    static std::string toUTF8(std::u16string str16);
+    static inline std::string toUTF8(std::u16string str16);
+    
+    /// 获取Unicode-16的字符串
+    /// @param data 字节数组
+    /// @param pos 起始字节位置
+    /// @param length 字节长度
+    /// @param byteOrder 文档字节序
+    static std::string getUnicode16String(char *data, int pos, int length, short byteOrder = -2);
 };
 
 } // namespace compdoc

@@ -38,9 +38,7 @@ DirectoryEntry::DirectoryEntry(char* data, short byteOrder)
     unsigned short nameLen;
     Util::getBytes(&nameLen, data, 64, 2, byteOrder);
     if (nameLen > 0) {
-        char16_t nameData[nameLen/2];
-        memcpy(nameData, data, nameLen);
-        name = Util::toUTF8(u16string(nameData));
+        name = Util::getUnicode16String(data, 0, nameLen, byteOrder);
     } else {
         name = "";
     }

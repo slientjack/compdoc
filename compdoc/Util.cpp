@@ -83,3 +83,17 @@ string Util::toUTF8(u16string str16)
 {
     return wstring_convert<codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(str16);
 }
+
+string Util::getUnicode16String(char *data, int pos, int length, short byteOrder)
+{
+    char16_t strData[length / 2];
+    memcpy(strData, data + pos, length);
+    if (byteOrder != -2) {
+        // 字节序不一致，字节反转
+        for (int i = 0; i < length / 2; ++i) {
+            char16_t c = strData[i];
+            strData[i] = (c >> 8) | (c << 8);
+        }
+    }
+    return toUTF8(u16string(strData));
+}
