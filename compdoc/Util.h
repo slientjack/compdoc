@@ -54,6 +54,10 @@ public:
     /// @param str1 字符串1
     /// @param str2 字符串2
     static int compare(std::string str1, std::string str2);
+    
+    /// Unicode-16转UTF-8
+    /// @param str16 unicode-16字符串
+    static std::string toUTF8(std::u16string str16);
 };
 
 } // namespace compdoc

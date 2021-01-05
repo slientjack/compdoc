@@ -27,6 +27,7 @@
 //************************************************************************************
 
 #include "Util.h"
+#include <codecvt>
 
 using namespace std;
 using namespace slient::compdoc;
@@ -76,4 +77,9 @@ int Util::compare(string str1, string str2)
         transform(str2.begin(), str2.end(), str2.begin(), ::toupper);
         return str1.compare(str2);
     }
+}
+
+string Util::toUTF8(u16string str16)
+{
+    return wstring_convert<codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(str16);
 }
