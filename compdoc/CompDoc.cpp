@@ -270,7 +270,7 @@ Result CompDoc::getEntry(const std::string& path, DirectoryEntry* entry)
     }
     
     // 红黑树查找匹配的Entry
-    DirectoryEntry& dirEntry = _directory[0];
+    DirectoryEntry dirEntry = _directory[0];
     DIR_ID parentID = kNoneDirID;
     vector<string> paths = Util::split(path, "/");
     for (int i = 0; i < paths.size(); ++i) {
