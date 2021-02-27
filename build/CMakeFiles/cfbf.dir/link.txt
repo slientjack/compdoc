@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcfbf.a CMakeFiles/cfbf.dir/src/document.cc.o CMakeFiles/cfbf.dir/src/entry.cc.o CMakeFiles/cfbf.dir/src/sat.cc.o
+/usr/bin/ranlib libcfbf.a
