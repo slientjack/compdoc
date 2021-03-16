@@ -25,7 +25,6 @@
 
 #include <vector>
 #include <string>
-using namespace std;
 
 #define LEN(array)(sizeof(array) / sizeof(array[0]))
 

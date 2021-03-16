@@ -50,7 +50,7 @@ namespace cfbf {
             virtual Byte* GetData(Int32 index) = 0;
             virtual Int32 sector_size() = 0;
         protected:
-            vector<Int32> table_;
+            std::vector<Int32> table_;
             Byte* buffer_;
             Int32 len_;
             CFBFHeader& header_;

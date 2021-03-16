@@ -28,7 +28,6 @@
 #include "typedef.h"
 #include "sat.h"
 #include "entry.h"
-using namespace std;
 
 namespace cfbf {
     class Document {
@@ -37,7 +36,7 @@ namespace cfbf {
             CFBFHeader& header();
             Byte* buffer();
             Sector operator[](Int32 index);
-            DirectoryEntry operator[](string path);
+            DirectoryEntry operator[](std::string path);
             Sector GetSector(Int32 index);
             Sector GetShortSector(Int32 index);
             DirectoryEntry Find(std::string path);
@@ -48,7 +47,7 @@ namespace cfbf {
             MastSectorAllocationTable msat_;
             SectorAllocationTable sat_;
             ShortSectorAllocationTable ssat_;
-            vector<CFBFDirectoryEntry*> entries_;
+            std::vector<CFBFDirectoryEntry*> entries_;
     };
 }
 #endif // CFB_H_

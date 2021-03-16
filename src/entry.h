@@ -53,9 +53,9 @@ namespace cfbf {
     class DirectoryEntry {
         public:
             DirectoryEntry(
-                string path,
+                std::string path,
                 CFBFHeader& header,
-                vector<CFBFDirectoryEntry*>& entries, 
+                std::vector<CFBFDirectoryEntry*>& entries,
                 SectorAllocationTable& sat, 
                 ShortSectorAllocationTable& ssat
             );
@@ -70,7 +70,7 @@ namespace cfbf {
         private:
             std::string path_;
             CFBFHeader& header_;
-            vector<CFBFDirectoryEntry*>& entries_;
+            std::vector<CFBFDirectoryEntry*>& entries_;
             SectorAllocationTable& sat_;
             ShortSectorAllocationTable& ssat_;
             CFBFDirectoryEntry* node_;

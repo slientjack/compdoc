@@ -23,6 +23,9 @@
 #include <iostream>
 #include <vector>
 #include "document.h"
+
+using namespace std;
+
 namespace cfbf {
 
 

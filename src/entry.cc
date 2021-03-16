@@ -26,6 +26,8 @@
 #include "sat.h"
 #include "entry.h"
 
+using namespace std;
+
 namespace cfbf {
 
 string ReadEntryName(Byte name[64], Int16 len) {
