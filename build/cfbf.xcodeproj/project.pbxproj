@@ -1,0 +1,827 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		C162645004FD4D35831994D7 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 000A72AEC8C448B2BED63A93 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				A55F92FC42AA4AA094A72463 /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		F0FBCC993964453EBF539215 /* install */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A4ED5F4BDC4744B6AFCB86A3 /* Build configuration list for PBXAggregateTarget "install" */;
+			buildPhases = (
+				DCC89C79204B45EC88C514F9 /* CMake PostBuild Rules */,
+			);
+			dependencies = (
+				93B2D064C02146358BE681DE /* PBXTargetDependency */,
+			);
+			name = install;
+			productName = install;
+		};
+		FE460754C1A140FA90C44167 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 5E3448B9A2294A50A76D29BF /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				5753F94BE73A4498AE762444 /* CMake Rules */,
+			);
+			dependencies = (
+				BD62BD2B26D24710AE6B8891 /* PBXTargetDependency */,
+				17497E66F5624D60A0965021 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		2A911F25A6EB47B9B8297176 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/entry.cc */ = {isa = PBXBuildFile; fileRef = 16888666E4F44CA1AEEF5CEA /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/entry.cc */; };
+		2E67B47BF6F84AF98FAA1F24 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/document.cc */ = {isa = PBXBuildFile; fileRef = 06F4584216EE4CC0B4CFE5EC /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/document.cc */; };
+		901B62AC98E440BC81853C51 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 1BF4FDB8B43C4F3090B0DCBD /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/CMakeLists.txt */; };
+		ACA3CE0A305D4AB582993108 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/cfbf.dir/Info.plist */ = {isa = PBXBuildFile; fileRef = 715BA8F5CCD447F1ACF87D0B /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/cfbf.dir/Info.plist */; };
+		C67E3E9274654919A9D7BA3E /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/sat.cc */ = {isa = PBXBuildFile; fileRef = 5713937F379A47A4A20F76B2 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/sat.cc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		1D203F5E6E6E4EBFA0769376 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		6141DE1A9E9442B8BB7EF49D /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		EBBC8FF923234981B917F33E /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		EBD0CC888AF14932A163D023 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		287CD8466B8F4E5599780277 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F1C3EBDC89664C5EA14F5699 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C162645004FD4D35831994D7;
+			remoteInfo = ZERO_CHECK;
+		};
+		3BF12B66DF664E91BE3FCF7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F1C3EBDC89664C5EA14F5699 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD22717066A842C5A752B7CC;
+			remoteInfo = cfbf;
+		};
+		970FDB3B49FB43ABBEBA1BA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F1C3EBDC89664C5EA14F5699 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C162645004FD4D35831994D7;
+			remoteInfo = ZERO_CHECK;
+		};
+		9E3F132C19FF409EA5759791 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F1C3EBDC89664C5EA14F5699 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE460754C1A140FA90C44167;
+			remoteInfo = ALL_BUILD;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		06F4584216EE4CC0B4CFE5EC /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/document.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = document.cc; path = src/document.cc; sourceTree = SOURCE_ROOT; };
+		16888666E4F44CA1AEEF5CEA /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/entry.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = entry.cc; path = src/entry.cc; sourceTree = SOURCE_ROOT; };
+		1BF4FDB8B43C4F3090B0DCBD /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		3EF4E531890545A18E697FE7 /* cfbf */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libcfbf.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5713937F379A47A4A20F76B2 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/sat.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = sat.cc; path = src/sat.cc; sourceTree = SOURCE_ROOT; };
+		715BA8F5CCD447F1ACF87D0B /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/cfbf.dir/Info.plist */ = {isa = PBXFileReference; explicitFileType = sourcecode.text.plist; fileEncoding = 4; name = Info.plist; path = build/CMakeFiles/cfbf.dir/Info.plist; sourceTree = SOURCE_ROOT; };
+		FDFDA65C53BE4E45A40EA904 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0F7D0D8CBBC043DE8CC1D27D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		095B68C124CE4648BA8008D2 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				F046724AC0D44886A8D847F1 /* CMake Rules */,
+				FDFDA65C53BE4E45A40EA904 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		35FD0537B8A24BB39F4662D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5E7097174120408E909687ED /* cfbf */ = {
+			isa = PBXGroup;
+			children = (
+				92E492D5CF7349C8AB934797 /* Source Files */,
+				DF53207D0258497DAC350A35 /* Resources */,
+				1BF4FDB8B43C4F3090B0DCBD /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/CMakeLists.txt */,
+			);
+			name = cfbf;
+			sourceTree = "<group>";
+		};
+		92E492D5CF7349C8AB934797 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				06F4584216EE4CC0B4CFE5EC /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/document.cc */,
+				16888666E4F44CA1AEEF5CEA /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/entry.cc */,
+				5713937F379A47A4A20F76B2 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/sat.cc */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		98436093AEA94FE588979C5E = {
+			isa = PBXGroup;
+			children = (
+				5E7097174120408E909687ED /* cfbf */,
+				095B68C124CE4648BA8008D2 /* ALL_BUILD */,
+				A3048DDDFD584EBF8F8921EC /* Products */,
+				35FD0537B8A24BB39F4662D5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A3048DDDFD584EBF8F8921EC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3EF4E531890545A18E697FE7 /* cfbf */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DF53207D0258497DAC350A35 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				715BA8F5CCD447F1ACF87D0B /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/cfbf.dir/Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F046724AC0D44886A8D847F1 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AD22717066A842C5A752B7CC /* cfbf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51CCE00222A14A9994852BBE /* Build configuration list for PBXNativeTarget "cfbf" */;
+			buildPhases = (
+				77AAD285A9634F6CB6FF63AB /* Sources */,
+				0F7D0D8CBBC043DE8CC1D27D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				188B153B59AA4AA9ACCB2FFF /* PBXTargetDependency */,
+			);
+			name = cfbf;
+			productName = cfbf;
+			productReference = 3EF4E531890545A18E697FE7 /* cfbf */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F1C3EBDC89664C5EA14F5699 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1240;
+			};
+			buildConfigurationList = 3723145B9FDA40D69AD3BFBE /* Build configuration list for PBXProject "cfbf" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				6141DE1A9E9442B8BB7EF49D /* Debug */,
+				1D203F5E6E6E4EBFA0769376 /* Release */,
+				EBBC8FF923234981B917F33E /* MinSizeRel */,
+				EBD0CC888AF14932A163D023 /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 98436093AEA94FE588979C5E;
+			projectDirPath = ../;
+			projectRoot = "";
+			targets = (
+				FE460754C1A140FA90C44167 /* ALL_BUILD */,
+				C162645004FD4D35831994D7 /* ZERO_CHECK */,
+				AD22717066A842C5A752B7CC /* cfbf */,
+				F0FBCC993964453EBF539215 /* install */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C0110FC8322DE7E50886E21 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		5753F94BE73A4498AE762444 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build -f /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			showEnvVarsInLog = 0;
+		};
+		87AF4882E018677E2624B544 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		9B50530E35CC49C82C2FACCF = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		A55F92FC42AA4AA094A72463 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build -f /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			showEnvVarsInLog = 0;
+		};
+		DCC89C79204B45EC88C514F9 /* CMake PostBuild Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake PostBuild Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build -f /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeScripts/install_postBuildPhase.make$CONFIGURATION OBJDIR=$(basename \"$OBJECT_FILE_DIR_normal\") all";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77AAD285A9634F6CB6FF63AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E67B47BF6F84AF98FAA1F24 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/document.cc */,
+				2A911F25A6EB47B9B8297176 /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/entry.cc */,
+				C67E3E9274654919A9D7BA3E /* /Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/src/sat.cc */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		17497E66F5624D60A0965021 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C162645004FD4D35831994D7 /* ZERO_CHECK */;
+			targetProxy = 287CD8466B8F4E5599780277 /* PBXContainerItemProxy */;
+		};
+		188B153B59AA4AA9ACCB2FFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C162645004FD4D35831994D7 /* ZERO_CHECK */;
+			targetProxy = 970FDB3B49FB43ABBEBA1BA9 /* PBXContainerItemProxy */;
+		};
+		93B2D064C02146358BE681DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE460754C1A140FA90C44167 /* ALL_BUILD */;
+			targetProxy = 9E3F132C19FF409EA5759791 /* PBXContainerItemProxy */;
+		};
+		BD62BD2B26D24710AE6B8891 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD22717066A842C5A752B7CC /* cfbf */;
+			targetProxy = 3BF12B66DF664E91BE3FCF7A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1A6C8C2760234F25B409A674 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		1FDEAD40E5024A77989105B9 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		21EF5B5AFF1B408AA585486A /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7,armv7s,arm64,i386,x86_64);
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = cfbf;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		25D8BC89426E44E3BEFFF61F /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		3633B78DB77D41F89DD960B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64 i386 x86_64";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/build";
+			};
+			name = Release;
+		};
+		5830895BDBFF4AE996773F55 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7,armv7s,arm64,i386,x86_64);
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = cfbf;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		5991F29C77CD45FDA8C11699 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		5E878772313A439D9739D9C8 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		5E9712A80AE440D683F0827C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7,armv7s,arm64,i386,x86_64);
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = cfbf;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		610F2587AF6F4AAAA7F3FA9A /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		660E1546194649BA93D04500 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		71C41CE46AA04EEF85CB515F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		7A75FA7F99C840429B355FD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (armv7,armv7s,arm64,i386,x86_64);
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "   ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = cfbf;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		7AFD55824B8E4CC089C5908D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		815A29F3B9384959B6B93A04 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		907799C557CF443FA931C21C /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64 i386 x86_64";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/build";
+			};
+			name = MinSizeRel;
+		};
+		9C8300636ECC40E8A6AE8515 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64 i386 x86_64";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/build";
+			};
+			name = Debug;
+		};
+		AD3289F1499D41BBBAB5907B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		B9E0BF172AAF4AA395C0BBDF /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "armv7 armv7s arm64 i386 x86_64";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/build";
+			};
+			name = RelWithDebInfo;
+		};
+		E50B564D7138401983C05037 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		000A72AEC8C448B2BED63A93 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5991F29C77CD45FDA8C11699 /* Debug */,
+				660E1546194649BA93D04500 /* Release */,
+				5E878772313A439D9739D9C8 /* MinSizeRel */,
+				815A29F3B9384959B6B93A04 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3723145B9FDA40D69AD3BFBE /* Build configuration list for PBXProject "cfbf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C8300636ECC40E8A6AE8515 /* Debug */,
+				3633B78DB77D41F89DD960B4 /* Release */,
+				907799C557CF443FA931C21C /* MinSizeRel */,
+				B9E0BF172AAF4AA395C0BBDF /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		51CCE00222A14A9994852BBE /* Build configuration list for PBXNativeTarget "cfbf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A75FA7F99C840429B355FD3 /* Debug */,
+				5E9712A80AE440D683F0827C /* Release */,
+				5830895BDBFF4AE996773F55 /* MinSizeRel */,
+				21EF5B5AFF1B408AA585486A /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5E3448B9A2294A50A76D29BF /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD3289F1499D41BBBAB5907B /* Debug */,
+				71C41CE46AA04EEF85CB515F /* Release */,
+				25D8BC89426E44E3BEFFF61F /* MinSizeRel */,
+				1FDEAD40E5024A77989105B9 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A4ED5F4BDC4744B6AFCB86A3 /* Build configuration list for PBXAggregateTarget "install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AFD55824B8E4CC089C5908D /* Debug */,
+				1A6C8C2760234F25B409A674 /* Release */,
+				610F2587AF6F4AAAA7F3FA9A /* MinSizeRel */,
+				E50B564D7138401983C05037 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F1C3EBDC89664C5EA14F5699 /* Project object */;
+}

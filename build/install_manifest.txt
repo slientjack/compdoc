@@ -1,0 +1,1 @@
+/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/ios/lib/libcfbf.a

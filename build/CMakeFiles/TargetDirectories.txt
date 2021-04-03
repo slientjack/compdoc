@@ -1,0 +1,7 @@
+/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/install/local.dir
+/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/rebuild_cache.dir
+/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/edit_cache.dir
+/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/install/strip.dir
+/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/cfbf.dir
+/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/install.dir
+/Users/yejianfei/Sources/dofunc/cpp/ms-composite-doc/build/CMakeFiles/list_install_components.dir
