@@ -134,10 +134,10 @@ Stream DirectoryEntry::OpenStream() {
 Stream::Stream(Int32 sector_start, Int32 length, AbstractSectorAllocationTable& sat)
     : sector_start_(sector_start), length_(length), sat_(sat)  {
 
-    int pos = 0;
+    Int32 pos = 0;
     data_ = new Byte[length_]; 
-    for (Sector sector = sat_[sector_start]; sector.index() >= 0; sector++) {
-        int size = pos + sat_.sector_size() <= length ? sat_.sector_size() : length - pos;
+    for (Sector sector = sat_[sector_start]; sector.index() >= 0 && pos < length_; sector++) {
+        Int32 size = pos + sat_.sector_size() <= length ? sat_.sector_size() : length - pos;
         memcpy(data_ + pos, sector.data(), size);
         pos += sat_.sector_size();
     }
