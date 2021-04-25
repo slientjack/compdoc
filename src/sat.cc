@@ -64,7 +64,7 @@ Byte* MastSectorAllocationTable::GetData(Int32 index) {
         sec_id =  header_.sector_fats[index];
     } else {
         int count = sector_size() / sizeof(Int32);
-        int seeks = (index - 109) / count;
+        int seeks = (index - 109) / (count - 1);
         
         sec_id = header_.sector_dif_start;
         for (int i = 0; i < seeks; i++) {
